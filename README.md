@@ -11,10 +11,11 @@ Included here:
 - `requirements-flatpak.txt`
 - `256x256.png`
 - `scalable.svg`
-- `build_flatpak.sh`
+- `.github/workflows/flatpak.yml`
 
-Build locally with:
+CI validation:
 
 ```bash
-bash build_flatpak.sh
+GitHub Actions builds the Flatpak manifest, verifies the exported app metadata,
+and produces a `.flatpak` bundle artifact from this repository.
 ```

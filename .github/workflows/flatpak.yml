@@ -1,0 +1,52 @@
+name: Flatpak
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      FLATPAK_ID: solutions.bmogroup.MIRA
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flatpak xvfb appstream
+
+      - name: Add Flathub remote user-wide
+        run: |
+          flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+      - name: Install org.flatpak.Builder
+        run: |
+          flatpak install -y flathub org.flatpak.Builder
+
+      - name: Build Flatpak
+        run: |
+          flatpak run --command=flathub-build org.flatpak.Builder --install \
+            solutions.bmogroup.MIRA.yml
+
+      - name: Lint manifest
+        run: |
+          flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest solutions.bmogroup.MIRA.yml
+
+      - name: Verify exported files
+        run: |
+          test -f repo/files/share/applications/${FLATPAK_ID}.desktop
+          test -f repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
+          test -f repo/files/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+          test -f repo/files/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+          appstreamcli validate --no-net repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
+
+      - name: Lint repo
+        run: |
+          flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
