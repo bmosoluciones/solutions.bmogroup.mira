@@ -20,24 +20,24 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y flatpak xvfb appstream
+          sudo apt-get install -y flatpak xvfb appstream dbus-x11
 
       - name: Add Flathub remote user-wide
         run: |
-          flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+          dbus-run-session -- flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
       - name: Install org.flatpak.Builder
         run: |
-          flatpak install -y flathub org.flatpak.Builder
+          dbus-run-session -- flatpak install -y flathub org.flatpak.Builder
 
       - name: Build Flatpak
         run: |
-          flatpak run --command=flathub-build org.flatpak.Builder --install \
+          dbus-run-session -- flatpak run --command=flathub-build org.flatpak.Builder --install \
             solutions.bmogroup.MIRA.yml
 
       - name: Lint manifest
         run: |
-          flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest solutions.bmogroup.MIRA.yml
+          dbus-run-session -- flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest solutions.bmogroup.MIRA.yml
 
       - name: Verify exported files
         run: |
@@ -49,4 +49,17 @@ jobs:
 
       - name: Lint repo
         run: |
-          flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
+          dbus-run-session -- flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
+
+      - name: Install app from local repo
+        run: |
+          dbus-run-session -- flatpak install --user -y ./repo ${FLATPAK_ID}
+
+      - name: Run smoke test
+        run: |
+          dbus-run-session -- xvfb-run -a sh -lc 'timeout 30s flatpak run ${FLATPAK_ID} || test $? -eq 124'
+
+      - name: Build bundle
+        run: |
+          flatpak build-bundle repo mira.flatpak ${FLATPAK_ID}
+          test -s mira.flatpak
