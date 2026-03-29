@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>solutions.bmogroup.MIRA</id>
+  <name>MIRA</name>
+  <developer_name>BMO Soluciones</developer_name>
+  <developer id="solutions.bmogroup">
+    <name translatable="no">BMO Soluciones</name>
+  </developer>
+  <summary>Offline personal finance assistant</summary>
+  <launchable type="desktop-id">solutions.bmogroup.MIRA.desktop</launchable>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <url type="homepage">https://github.com/bmosoluciones/mira</url>
+  <url type="bugtracker">https://github.com/bmosoluciones/mira/issues</url>
+  <url type="vcs-browser">https://github.com//bmosoluciones/mira</url>
+  <update_contact>development@bmogroup.solutions</update_contact>
+  <description>
+    <p>
+      MIRA is an offline desktop app for personal finance management.
+    </p>
+    <p>
+      Track income and expenses, organize accounts and categories, and review reports
+      without sending data to external services.
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image type="source">https://raw.githubusercontent.com/bmosoluciones/mira-personal-finance-assistant/main/docs/images/mira_dashboard.png</image>
+      <caption>Main dashboard of MIRA</caption>
+    </screenshot>
+  </screenshots>
+  <keywords>
+    <keyword>finance</keyword>
+    <keyword>budget</keyword>
+    <keyword>expenses</keyword>
+    <keyword>income</keyword>
+  </keywords>
+  <releases>
+    <release version="0.0.1-rc1" date="2026-03-28"/>
+  </releases>
+  <content_rating type="oars-1.1"/>
+</component>
