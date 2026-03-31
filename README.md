@@ -4,9 +4,9 @@ This submodule contains the Flatpak packaging files for MIRA.
 
 Included here:
 
-- `solutions.bmogroup.MIRA.yml`
-- `solutions.bmogroup.MIRA.desktop.in`
-- `solutions.bmogroup.MIRA.metainfo.xml.in`
+- `solutions.bmogroup.mira.yml`
+- `solutions.bmogroup.mira.desktop.in`
+- `solutions.bmogroup.mira.metainfo.xml.in`
 - `pypi-dependencies.json`
 - `requirements-flatpak.txt`
 - `256x256.png`

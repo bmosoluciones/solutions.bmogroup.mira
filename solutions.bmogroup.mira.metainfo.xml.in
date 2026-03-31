@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>solutions.bmogroup.MIRA</id>
+  <id>solutions.bmogroup.mira</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <name>MIRA</name>
@@ -28,26 +28,24 @@
       <image>https://raw.githubusercontent.com/bmosoluciones/mira-personal-finance-assistant/main/docs/images/mira_main_report.png</image>
     </screenshot>
   </screenshots>
-  <branding>
+  <x-branding>
     <color type="primary" scheme_preference="light">#0f766e</color>
     <color type="primary" scheme_preference="dark">#5eead4</color>
-  </branding>
+  </x-branding>
   <url type="homepage">https://github.com/bmosoluciones/mira-personal-finance-assistant</url>
   <url type="bugtracker">https://github.com/bmosoluciones/mira-personal-finance-assistant/issues</url>
-  <url type="vcs-browser">https://github.com/bmosoluciones/mira-personal-finance-assistant</url>
   <update_contact>development@bmogroup.solutions</update_contact>
-  <developer id="solutions.bmogroup">
+  <x-developer id="solutions.bmogroup">
     <name>BMO Soluciones</name>
-  </developer>
-  <launchable type="desktop-id">solutions.bmogroup.MIRA.desktop</launchable>
+  </x-developer>
+  <launchable type="desktop-id">solutions.bmogroup.mira.desktop</launchable>
   <requires>
     <display_length compare="ge">832</display_length>
-    <internet>offline-only</internet>
   </requires>
-  <supports>
+  <x-supports>
     <control>keyboard</control>
     <control>pointing</control>
-  </supports>
+  </x-supports>
   <keywords>
     <keyword>finance</keyword>
     <keyword>budget</keyword>

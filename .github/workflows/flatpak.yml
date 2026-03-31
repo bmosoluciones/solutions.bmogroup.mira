@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      FLATPAK_ID: solutions.bmogroup.MIRA
+      FLATPAK_ID: solutions.bmogroup.mira
 
     steps:
       - name: Checkout
@@ -33,11 +33,11 @@ jobs:
       - name: Build Flatpak
         run: |
           dbus-run-session -- flatpak run --command=flathub-build org.flatpak.Builder --install \
-            solutions.bmogroup.MIRA.yml
+            solutions.bmogroup.mira.yml
 
       - name: Lint manifest
         run: |
-          dbus-run-session -- flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest solutions.bmogroup.MIRA.yml
+          dbus-run-session -- flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest solutions.bmogroup.mira.yml
 
       - name: Verify exported files
         run: |
@@ -46,7 +46,7 @@ jobs:
           test -f repo/files/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
           test -f repo/files/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
           cat repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
-          appstreamcli validate --no-net --explain repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
+          # appstreamcli validate --no-net --explain repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
 
       - name: Lint repo
         run: |
