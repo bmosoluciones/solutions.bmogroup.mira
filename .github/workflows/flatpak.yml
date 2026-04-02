@@ -42,10 +42,21 @@ jobs:
 
       - name: Verify exported files
         run: |
-          test -f repo/files/share/applications/${FLATPAK_ID}.desktop
-          test -f repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
-          test -f repo/files/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
-          test -f repo/files/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+          set -euxo pipefail
+          require_file() {
+            local path="$1"
+            if [[ ! -f "${path}" ]]; then
+              echo "::error file=${path}::Expected file not found"
+              echo "Exported files under repo/files/share:"
+              find repo/files/share -maxdepth 8 -type f | sort || true
+              exit 1
+            fi
+          }
+
+          require_file "repo/files/share/applications/${FLATPAK_ID}.desktop"
+          require_file "repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+          require_file "repo/files/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png"
+          require_file "repo/files/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
           cat repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
           appstreamcli validate --no-net --explain repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
 
