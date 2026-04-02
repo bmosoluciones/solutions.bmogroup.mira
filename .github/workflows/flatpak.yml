@@ -33,6 +33,7 @@ jobs:
       - name: Build Flatpak
         run: |
           dbus-run-session -- flatpak run --command=flathub-build org.flatpak.Builder --install \
+            --disable-rofiles-fuse \
             solutions.bmogroup.mira.yml
 
       - name: Lint manifest
@@ -46,7 +47,7 @@ jobs:
           test -f repo/files/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
           test -f repo/files/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
           cat repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
-          # appstreamcli validate --no-net --explain repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
+          appstreamcli validate --no-net --explain repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
 
       - name: Lint repo
         run: |

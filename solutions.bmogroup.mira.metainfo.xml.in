@@ -32,8 +32,10 @@
     <color type="primary" scheme_preference="light">#0f766e</color>
     <color type="primary" scheme_preference="dark">#5eead4</color>
   </x-branding>
+  <developer_name>BMO Soluciones</developer_name>
   <url type="homepage">https://github.com/bmosoluciones/mira-personal-finance-assistant</url>
   <url type="bugtracker">https://github.com/bmosoluciones/mira-personal-finance-assistant/issues</url>
+  <url type="vcs-browser">https://github.com/bmosoluciones/mira-personal-finance-assistant</url>
   <update_contact>development@bmogroup.solutions</update_contact>
   <x-developer id="solutions.bmogroup">
     <name>BMO Soluciones</name>

@@ -2,7 +2,7 @@
     "name": "python3-package-installation",
     "buildsystem": "simple",
     "build-commands": [
-        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} --no-build-isolation et-xmlfile jinja2 markupSafe openpyxl qt-material"
+        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} --no-build-isolation et-xmlfile jinja2 MarkupSafe openpyxl peewee qt-material"
     ],
     "sources": [
         {
@@ -17,13 +17,18 @@
         },
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/67/6a/5b3ed5c122e20c33d2562df06faf895a6b91b0a6b96a4626440ffe1d5c8e/MarkupSafe-2.0.0.tar.gz",
-            "sha256": "4fae0677f712ee090721d8b17f412f1cbceefbf0dc180fe91bab3232f38b4527"
+            "url": "https://files.pythonhosted.org/packages/87/5b/aae44c6655f3801e81aa3eef09dbbf012431987ba564d7231722f68df02d/MarkupSafe-2.1.5.tar.gz",
+            "sha256": "d283d37a890ba4c1ae73ffadf8046435c76e7bc2247bbb63c00bd1a709c6544b"
         },
         {
             "type": "file",
             "url": "https://files.pythonhosted.org/packages/c0/da/977ded879c29cbd04de313843e76868e6e13408a94ed6b987245dc7c8506/openpyxl-3.1.5-py2.py3-none-any.whl",
             "sha256": "5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/4f/8e/943f57ce32eb005c7037110a759e2ebfb22e467a9a0efcb6d516c5bf00c6/peewee-4.0.2-py3-none-any.whl",
+            "sha256": "86d5d16bcda5bbe017a108f6efc57abaac8d89277915541904542df9d2a7f25d"
         },
         {
             "type": "file",
