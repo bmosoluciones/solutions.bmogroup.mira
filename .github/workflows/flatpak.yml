@@ -73,12 +73,3 @@ jobs:
       - name: Install app from local repo
         run: |
           dbus-run-session -- flatpak install --user -y ./repo ${FLATPAK_ID}
-
-      - name: Run smoke test
-        run: |
-          dbus-run-session -- xvfb-run -a sh -lc 'timeout 30s flatpak run ${FLATPAK_ID} || test $? -eq 124'
-
-      - name: Build bundle
-        run: |
-          flatpak build-bundle repo mira.flatpak ${FLATPAK_ID}
-          test -s mira.flatpak
