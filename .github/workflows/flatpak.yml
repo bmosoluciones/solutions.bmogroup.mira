@@ -43,22 +43,28 @@ jobs:
       - name: Verify exported files
         run: |
           set -euxo pipefail
+          export_root="builddir/files/share"
+          if [[ ! -d "${export_root}" ]]; then
+            echo "::warning::${export_root} not found; listing workspace for diagnostics"
+            find . -maxdepth 4 -type d | sort || true
+          fi
+
           require_file() {
             local path="$1"
             if [[ ! -f "${path}" ]]; then
               echo "::error file=${path}::Expected file not found"
-              echo "Exported files under repo/files/share:"
-              find repo/files/share -maxdepth 8 -type f | sort || true
+              echo "Exported files under ${export_root}:"
+              find "${export_root}" -maxdepth 8 -type f | sort || true
               exit 1
             fi
           }
 
-          require_file "repo/files/share/applications/${FLATPAK_ID}.desktop"
-          require_file "repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml"
-          require_file "repo/files/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png"
-          require_file "repo/files/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
-          cat repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
-          appstreamcli validate --no-net --explain repo/files/share/metainfo/${FLATPAK_ID}.metainfo.xml
+          require_file "${export_root}/applications/${FLATPAK_ID}.desktop"
+          require_file "${export_root}/metainfo/${FLATPAK_ID}.metainfo.xml"
+          require_file "${export_root}/icons/hicolor/256x256/apps/${FLATPAK_ID}.png"
+          require_file "${export_root}/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
+          cat "${export_root}/metainfo/${FLATPAK_ID}.metainfo.xml"
+          appstreamcli validate --no-net --explain "${export_root}/metainfo/${FLATPAK_ID}.metainfo.xml"
 
       - name: Lint repo
         run: |
