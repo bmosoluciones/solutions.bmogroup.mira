@@ -55,9 +55,9 @@
     <keyword>income</keyword>
   </keywords>
   <releases>
-    <release version="0.0.1rc1" date="2026-03-28">
+    <release version="0.0.1a2" date="2026-04-03">
       <description>
-        <p>Initial public release candidate of MIRA.</p>
+        <p>Public alpha release of MIRA with published Windows and wheel artifacts.</p>
         <ul>
           <li>Offline-first personal finance workflow</li>
           <li>Annual budgets, reports, and savings goals</li>
