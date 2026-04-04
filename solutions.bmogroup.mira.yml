@@ -7,10 +7,8 @@ base-version: "6.10"
 command: mira
 
 finish-args:
-  - --share=ipc
-  - --socket=fallback-x11
+  - --socket=x11
   - --socket=wayland
-  - --device=dri
 
 build-options:
   env:
