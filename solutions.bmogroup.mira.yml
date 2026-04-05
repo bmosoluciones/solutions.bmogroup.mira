@@ -1,0 +1,42 @@
+app-id: solutions.bmogroup.mira
+runtime: org.kde.Platform
+runtime-version: "6.10"
+sdk: org.kde.Sdk
+base: io.qt.PySide.BaseApp
+base-version: "6.10"
+command: mira
+
+finish-args:
+  - --socket=x11
+  - --socket=wayland
+
+build-options:
+  env:
+    PYSIDE_VERSION: "6.10.2"
+    BASEAPP_REMOVE_WEBENGINE: "1"
+
+modules:
+  - pypi-dependencies.json
+  - name: mira
+    buildsystem: simple
+    build-commands:
+      - pip3 install --no-deps --prefix=${FLATPAK_DEST} mira_personal_finance_assistant-0.0.1a2-py3-none-any.whl
+      - install -Dm644 solutions.bmogroup.mira.desktop.in ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 solutions.bmogroup.mira.metainfo.xml.in ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
+      - install -Dm644 256x256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+      - install -Dm644 scalable.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+    sources:
+      - type: file
+        url: https://mira.bmogroup.solutions/releases/mira_personal_finance_assistant-0.0.1a2-py3-none-any.whl
+        sha256: 466fac85e4482ddde6762cb5b2de41193acfaec98c8a59214370abf3bea2e599
+      - type: file
+        path: solutions.bmogroup.mira.desktop.in
+      - type: file
+        path: solutions.bmogroup.mira.metainfo.xml.in
+      - type: file
+        path: 256x256.png
+      - type: file
+        path: scalable.svg
+cleanup:
+  - "/include"
+  - "/share/man"
