@@ -21,15 +21,15 @@ modules:
   - name: mira
     buildsystem: simple
     build-commands:
-      - pip3 install --no-deps --prefix=${FLATPAK_DEST} mira_personal_finance_assistant-0.0.1a3-py3-none-any.whl
+      - pip3 install --no-deps --prefix=${FLATPAK_DEST} mira_personal_finance_assistant-0.0.1b1-py3-none-any.whl
       - install -Dm644 solutions.bmogroup.mira.desktop.in ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
       - install -Dm644 solutions.bmogroup.mira.metainfo.xml.in ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
       - install -Dm644 256x256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
       - install -Dm644 scalable.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
     sources:
       - type: file
-        url: https://mira.bmogroup.solutions/releases/mira_personal_finance_assistant-0.0.1a3-py3-none-any.whl
-        sha256: 3a5e66ee20cb61e07a76fa9841b1d2f98ce118cb28edb3ccc12ed1463d572c12
+        url: https://mira.bmogroup.solutions/releases/mira_personal_finance_assistant-0.0.1b1-py3-none-any.whl
+        sha256: 3b83d5f015293c7bb78216e803092d1f20b5a21dfbace20b03459f81d72710fd
       - type: file
         path: solutions.bmogroup.mira.desktop.in
       - type: file
