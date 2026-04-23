@@ -1,6 +1,12 @@
+cryptography==46.0.7
+cffi==2.0.0
+pycparser==3.0
 et-xmlfile==2.0.0
 jinja2==3.1.6
 MarkupSafe==2.1.5
 openpyxl==3.1.5
 peewee==4.0.2
+segno==1.6.6
 qt-material==2.14
+zeroconf==0.148.0
+ifaddr==0.2.0
